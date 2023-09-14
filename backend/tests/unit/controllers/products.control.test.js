@@ -36,6 +36,7 @@ describe('Testa o controller de produtos', function () {
         await productsControl.findById(req, res);
 
         expect(res.status).to.have.been.calledWith(200);
+        
         expect(res.json).to.have.been.calledWith(products[0]);
     });
 });
