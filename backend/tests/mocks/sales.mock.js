@@ -34,7 +34,40 @@ const salesById = [
     },
   ];
 
+const createSaleRequest = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+
+];
+
+const createSaleResponse = {
+  
+    id: 1,
+    itemsSold: [
+      {
+        productId: 1,
+        quantity: 1,
+      },
+
+    ],
+};
+
+const failedCreateSaleRequest = [
+  {
+    productId: 99,
+    quantity: 1,
+  },
+];
+
+const failedQuantityCreateSaleRequest = [{ productId: 1, quantity: 0 }];
+
 module.exports = {
     sales,
     salesById,
+    createSaleRequest,
+    createSaleResponse,
+    failedCreateSaleRequest,
+    failedQuantityCreateSaleRequest,
 };

@@ -1,4 +1,6 @@
 const { salesModel } = require('../models');
+const { validationCreateSale, validationProduct,
+     validationProducts } = require('../middlewares/validationsInputsProducts');
 
 const getAll = async () => {
     const sales = await salesModel.getAll();
@@ -11,7 +13,25 @@ const findById = async (id) => {
     return { status: 'SUCCESSFUL', data: sale };
 };
 
+const createSaleProducts = async (sales) => {
+    const error = validationCreateSale(sales);
+    if (error) return { status: error.status, data: { message: error.message } };
+    const errorProducts = validationProducts(sales);
+    if (errorProducts) {
+ return { status: errorProducts.status,
+        data: { message: errorProducts.message } }; 
+}
+    const errorProduct = await validationProduct(sales);
+    if (errorProduct) {
+ return { status: errorProduct.status,
+         data: { message: errorProduct.message } }; 
+}
+    const sale = await salesModel.createSaleProducts(sales);
+    return { status: 'SUCCESSFUL', data: sale };
+};
+
 module.exports = {
     getAll,
     findById,
+    createSaleProducts,
 };

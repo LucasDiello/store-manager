@@ -2,7 +2,7 @@
 const chai = require('chai');
 const sinon = require('sinon');
 const { salesModel } = require('../../../src/models');
-const { sales, salesById } = require('../../mocks/sales.mock');
+const { sales, salesById, createSaleRequest, createSaleResponse } = require('../../mocks/sales.mock');
 const { mapKeysToCamelCase } = require('../../../src/models/sales.model');
 const connection = require('../../../src/models/connection');
 
@@ -36,6 +36,14 @@ describe('Testa o model de vendas', function () {
             monkeyLuffy: '1',
             roronoaZoro: '2',
         });
+    });
+
+    it('Testa se o model de vendas possui o método createSale', async function () {
+        sinon.stub(connection, 'execute').resolves([{ insertId: 1 }]);
+
+        const response = await salesModel.createSaleProducts(createSaleRequest);
+        expect(response).to.be.an('object');
+        expect(response).to.be.deep.equal(createSaleResponse);
     });
 
     afterEach(function () {

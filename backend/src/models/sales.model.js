@@ -38,8 +38,29 @@ const findById = async (id) => {
     return camelCaseSale;
 };
 
+const createSale = async () => {
+    const [{ insertId }] = await connection.execute(
+        'INSERT INTO sales () VALUES ()',
+    );
+    return insertId;
+};
+
+const createSaleProducts = async (sales) => {
+    const insertId = await createSale();
+
+    const insertPromises = sales.map(({ productId, quantity }) => 
+         connection.execute(
+        'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+        [insertId, productId, quantity],
+    ));
+    
+    await Promise.all(insertPromises);
+
+    return { id: insertId, itemsSold: sales };
+};
 module.exports = {
     getAll,
     findById,
     mapKeysToCamelCase,
+    createSaleProducts,
 };
