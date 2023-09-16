@@ -25,17 +25,10 @@ describe('Testa o model de vendas', function () {
     });
 
     it('Testa função transform CamelCase', function () {
-        const snakeCaseObj = {
-            monkey_luffy: '1',
-            roronoa_zoro: '2',
-        };
-    
-        const camelCaseObj = mapKeysToCamelCase(snakeCaseObj);
-    
-        expect(camelCaseObj).to.deep.equal({
-            monkeyLuffy: '1',
-            roronoaZoro: '2',
-        });
+        const obj = { product_id: 1, quantity: 1 };
+        const response = mapKeysToCamelCase(obj);
+        expect(response).to.be.an('object');
+        expect(response).to.be.deep.equal({ productId: 1, quantity: 1 });
     });
 
     it('Testa se o model de vendas possui o método createSale', async function () {
