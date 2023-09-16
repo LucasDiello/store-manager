@@ -9,4 +9,6 @@ route.post('/', async (req, res) => productsControl.createProduct(req, res));
 
 route.put('/:id', async (req, res) => productsControl.updateProduct(req, res));
 
+route.delete('/:id', async (req, res) => productsControl.deleteProduct(req, res));
+
 module.exports = route;
