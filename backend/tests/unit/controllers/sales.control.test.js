@@ -39,6 +39,20 @@ describe('Testa o controller de vendas', function () {
         expect(res.json).to.have.been.calledWith(salesById);
     });
 
+    it('Testa se o controller de vendas possui o método createSaleProducts', async function () {
+        sinon.stub(salesService, 'createSaleProducts').resolves({ status: 'SUCCESSFUL', data: sales });
+        const req = { body: [{ productId: 1, quantity: 1 }] };
+        const res = {
+            status: sinon.stub().returnsThis(),
+            json: sinon.stub(),
+        };
+
+        await salesControl.createSaleProducts(req, res);
+
+        expect(res.status).to.have.been.calledWith(200);
+        expect(res.json).to.have.been.calledWith(sales);
+    });
+
     afterEach(function () {
         sinon.restore();
     });
