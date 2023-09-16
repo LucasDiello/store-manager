@@ -38,6 +38,7 @@ const validationCreateSale = (sales) => {
     }
     return null;
 };
+
 module.exports = {
     validationCreateProduct,
     validationCreateSale,

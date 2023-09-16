@@ -7,4 +7,6 @@ route.get('/:id', async (req, res) => productsControl.findById(req, res));
 
 route.post('/', async (req, res) => productsControl.createProduct(req, res));
 
+route.put('/:id', async (req, res) => productsControl.updateProduct(req, res));
+
 module.exports = route;

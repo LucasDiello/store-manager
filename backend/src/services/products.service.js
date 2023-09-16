@@ -1,5 +1,7 @@
 const { productsModel } = require('../models');
-const { validationCreateProduct } = require('../middlewares/validationsInputsProducts');
+const { validationCreateProduct,
+     validationProduct } = require('../middlewares/validationsInputsProducts');
+const { updateProductSchema } = require('../middlewares/schemas'); 
 
 const getAll = async () => {
     const products = await productsModel.getAll();
@@ -23,8 +25,28 @@ const createProduct = async (name) => {
     return { status: 'CREATED', data: product };
 };
 
+const updateProduct = async (id, name) => {
+    const { error } = updateProductSchema.validate({ name });
+    const errorProduct = await validationProduct([{ productId: Number(id) }]);  
+    if (errorProduct) {
+ return {
+         status: errorProduct.status, data: { message: errorProduct.message } }; 
+}
+    if (error) {
+        const HTTPSTATUS = error.message === '"name" is required'
+        ? 'BAD_REQUEST'
+        : 'UNPROCESSABLE_ENTITY';
+ return { status: HTTPSTATUS, data: { message: error.message } }; 
+}
+
+    const product = await productsModel.updateProduct(id, name);
+    if (!product) return { status: 'BAD_REQUEST', data: { message: 'Product not found' } };
+    return { status: 'SUCCESSFUL', data: product };
+};
+
 module.exports = {
     getAll,
     findById,
     createProduct,
+    updateProduct,
 };
