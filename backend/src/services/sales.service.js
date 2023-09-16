@@ -27,7 +27,7 @@ const createSaleProducts = async (sales) => {
          data: { message: errorProduct.message } }; 
 }
     const sale = await salesModel.createSaleProducts(sales);
-    return { status: 'SUCCESSFUL', data: sale };
+    return { status: 'CREATED', data: sale };
 };
 
 module.exports = {

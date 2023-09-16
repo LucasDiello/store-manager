@@ -24,7 +24,7 @@ describe('Testa o service de vendas', function () {
         sinon.stub(salesModel, 'createSaleProducts').resolves(createSaleResponse);
         const response = await salesService.createSaleProducts(createSaleRequest);
         expect(response).to.be.an('object');
-        expect(response).to.be.deep.equal({ status: 'SUCCESSFUL', data: createSaleResponse });
+        expect(response).to.be.deep.equal({ status: 'CREATED', data: createSaleResponse });
     });
 
     it('Testa se o method createSaleProducts retorna um erro quando o produto não existe', async function () {
