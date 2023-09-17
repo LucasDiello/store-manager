@@ -56,6 +56,21 @@ describe('Testa o service de vendas', function () {
         expect(response).to.be.deep.equal({ status: 'BAD_REQUEST', data: { message: '"productId" is required' } });
     });
 
+    it('Testa se o service de vendas possui o método deleteSale', async function () {
+        sinon.stub(salesModel, 'deleteSale').resolves();
+        const response = await salesService.deleteSale(1);
+        expect(response).to.be.an('object');
+        expect(response).to.be.deep.equal({ status: 'NOT_CONTENT', data: { message: 'Sale deleted successfully' } });
+    });
+
+    it('Testa se o method deleteSale retorna um erro quando o produto não existe', async function () {
+        sinon.stub(salesModel, 'deleteSale').resolves();
+        sinon.stub(salesModel, 'getAll').resolves([]);
+        const response = await salesService.deleteSale(999);
+        expect(response).to.be.an('object');
+        expect(response).to.be.deep.equal({ status: 'NOT_FOUND', data: { message: 'Sale not found' } });
+    });
+
     afterEach(function () {
         sinon.restore();
     });

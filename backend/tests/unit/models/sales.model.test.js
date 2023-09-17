@@ -45,6 +45,12 @@ describe('Testa o model de vendas', function () {
         expect(response).to.be.deep.equal(createSaleResponse);
     });
 
+    it('Testa se o model de vendas possui o método deleteSale', async function () {
+        sinon.stub(connection, 'execute').resolves();
+        const response = await salesModel.deleteSale(1);
+        expect(response).to.equal(undefined);
+    });
+
     afterEach(function () {
         sinon.restore();
     });

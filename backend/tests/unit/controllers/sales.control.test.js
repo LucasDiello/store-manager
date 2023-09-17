@@ -53,6 +53,20 @@ describe('Testa o controller de vendas', function () {
         expect(res.json).to.have.been.calledWith(sales);
     });
 
+    it('Testa se o controller de vendar possui o método deleteSale', async function () {
+        sinon.stub(salesService, 'deleteSale').resolves({ status: 'NOT_CONTENT', message: 'Sale deleted successfully ' });
+        const req = { params: 1 };
+        const res = {
+            status: sinon.stub().returnsThis(),
+            json: sinon.stub(),
+        };
+
+        await salesControl.deleteSale(req, res);
+
+        expect(res.status).to.have.been.calledWith(204);
+        expect(res.json).to.have.been.calledWith(undefined);
+    });
+
     afterEach(function () {
         sinon.restore();
     });
