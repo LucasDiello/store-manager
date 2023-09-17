@@ -58,9 +58,18 @@ const createSaleProducts = async (sales) => {
 
     return { id: insertId, itemsSold: sales };
 };
+
+const deleteSale = async (id) => {
+    await connection.execute(
+        'DELETE FROM sales WHERE id = ?',
+        [id],
+    );
+};
+
 module.exports = {
     getAll,
     findById,
     mapKeysToCamelCase,
     createSaleProducts,
+    deleteSale,
 };

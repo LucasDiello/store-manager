@@ -9,9 +9,12 @@ const validationCreateProduct = (name) => {
 }
 };
 
-const validationProduct = async (sales) => {
+const validationItem = async (itemsId) => {
     const products = await productsModel.getAll();
-    const verify = (sales.map((sale) => products.some((product) => product.id === sale.productId)));
+    
+    const verify = (
+        itemsId.map((sale) => products.some((product) => product.id === sale.productId
+         || product.id === sale.id)));
     if (verify.includes(false)) return { status: 'NOT_FOUND', message: 'Product not found' };
 };
 
@@ -42,6 +45,6 @@ const validationCreateSale = (sales) => {
 module.exports = {
     validationCreateProduct,
     validationCreateSale,
-    validationProduct,
+    validationItem,
     validationProducts,
 };

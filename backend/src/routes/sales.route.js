@@ -7,4 +7,6 @@ route.get('/:id', async (req, res) => salesControl.findById(req, res));
 
 route.post('/', async (req, res) => salesControl.createSaleProducts(req, res));
 
+route.delete('/:id', async (req, res) => salesControl.deleteSale(req, res));
+
 module.exports = route;

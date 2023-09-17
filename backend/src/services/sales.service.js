@@ -1,5 +1,5 @@
 const { salesModel } = require('../models');
-const { validationCreateSale, validationProduct,
+const { validationCreateSale, validationItem,
      validationProducts } = require('../middlewares/validationsInputsProducts');
 
 const getAll = async () => {
@@ -21,7 +21,7 @@ const createSaleProducts = async (sales) => {
  return { status: errorProducts.status,
         data: { message: errorProducts.message } }; 
 }
-    const errorProduct = await validationProduct(sales);
+    const errorProduct = await validationItem(sales);
     if (errorProduct) {
  return { status: errorProduct.status,
          data: { message: errorProduct.message } }; 
@@ -30,8 +30,22 @@ const createSaleProducts = async (sales) => {
     return { status: 'CREATED', data: sale };
 };
 
+const deleteSale = async (id) => {
+    const errorProduct = await validationItem([{ id: Number(id) }]);
+    
+    if (errorProduct) {
+        const newMessage = errorProduct.message.replace('Product', 'Sale');
+        console.log(newMessage);
+        return { status: errorProduct.status,
+         data: { message: newMessage } }; 
+}
+    await salesModel.deleteSale(id);
+    return { status: 'NOT_CONTENT', data: { message: 'Sale deleted successfully' } };
+};
+
 module.exports = {
     getAll,
     findById,
     createSaleProducts,
+    deleteSale,
 };

@@ -1,6 +1,6 @@
 const { productsModel } = require('../models');
 const { validationCreateProduct,
-     validationProduct } = require('../middlewares/validationsInputsProducts');
+     validationItem } = require('../middlewares/validationsInputsProducts');
 const { updateProductSchema } = require('../middlewares/schemas'); 
 
 const getAll = async () => {
@@ -27,7 +27,7 @@ const createProduct = async (name) => {
 
 const updateProduct = async (id, name) => {
     const { error } = updateProductSchema.validate({ name });
-    const errorProduct = await validationProduct([{ productId: Number(id) }]);  
+    const errorProduct = await validationItem([{ productId: Number(id) }]);  
     if (errorProduct) {
  return {
          status: errorProduct.status, data: { message: errorProduct.message } }; 
@@ -45,7 +45,7 @@ const updateProduct = async (id, name) => {
 };
 
 const deleteProduct = async (id) => {
-    const errorProduct = await validationProduct([{ productId: Number(id) }]);
+    const errorProduct = await validationItem([{ productId: Number(id) }]);
     if (errorProduct) {
         return {
                 status: errorProduct.status, data: { message: errorProduct.message } }; 
