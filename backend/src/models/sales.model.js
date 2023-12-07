@@ -66,10 +66,29 @@ const deleteSale = async (id) => {
     );
 };
 
+const updateSale = async (id, productId, quantity) => {
+    await connection.execute(
+        'UPDATE sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?',
+        [quantity, id, productId],
+    );
+
+    const [date] = await connection.execute(
+        `SELECT * FROM sales WHERE id = ${id}`,
+    );
+        
+    return {
+        date: date[0].date,
+        productId,
+        saleId: id,
+        quantity,
+    };
+};
+
 module.exports = {
     getAll,
     findById,
     mapKeysToCamelCase,
     createSaleProducts,
     deleteSale,
+    updateSale,
 };

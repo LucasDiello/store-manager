@@ -9,4 +9,7 @@ route.post('/', async (req, res) => salesControl.createSaleProducts(req, res));
 
 route.delete('/:id', async (req, res) => salesControl.deleteSale(req, res));
 
+route.put('/:saleId/products/:productId/quantity',
+ async (req, res) => salesControl.updateSale(req, res));
+
 module.exports = route;

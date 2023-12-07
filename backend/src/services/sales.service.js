@@ -1,6 +1,8 @@
 const { salesModel } = require('../models');
 const { validationCreateSale, validationItem,
-     validationProducts } = require('../middlewares/validationsInputsProducts');
+     validationProducts,
+    validationSales } = require('../middlewares/validationsInputsProducts');
+const { updatedSaleSchema } = require('../middlewares/schemas');
 
 const getAll = async () => {
     const sales = await salesModel.getAll();
@@ -35,7 +37,6 @@ const deleteSale = async (id) => {
     
     if (errorProduct) {
         const newMessage = errorProduct.message.replace('Product', 'Sale');
-        console.log(newMessage);
         return { status: errorProduct.status,
          data: { message: newMessage } }; 
 }
@@ -43,9 +44,32 @@ const deleteSale = async (id) => {
     return { status: 'NOT_CONTENT', data: { message: 'Sale deleted successfully' } };
 };
 
+const updateSale = async (productId, id, quantity) => {
+    const { error } = updatedSaleSchema.validate({ quantity });
+    if (error) return { status: 'BAD_REQUEST', data: { message: error.message } };
+    const errorProduct = await validationItem([{ productId: Number(productId) }]);
+    if (errorProduct) {
+        const newMessage = `${errorProduct.message} in sale`;
+
+ return { status: errorProduct.status,
+         data: { message: newMessage } }; 
+}
+
+    const validationSalesError = await validationSales([{ saleId: Number(id) }]);
+    if (validationSalesError) {
+        const newMessage = `${validationSalesError.message}`;
+
+    return { status: validationSalesError.status,
+        data: { message: newMessage } };
+}
+
+    const sale = await salesModel.updateSale(productId, id, quantity);
+    return { status: 'SUCCESSFUL', data: sale };
+};
 module.exports = {
     getAll,
     findById,
     createSaleProducts,
     deleteSale,
+    updateSale,
 };

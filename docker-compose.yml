@@ -9,7 +9,6 @@ services:
     volumes:
       # vincula pasta local com a dentro do container
       - ./backend/src:/app/src
-      - ./backend/tests:/app/tests
     environment:
       MYSQL_USER: root
       MYSQL_PASSWORD: password

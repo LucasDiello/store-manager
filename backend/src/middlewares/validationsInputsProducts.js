@@ -1,4 +1,4 @@
-const { productsModel } = require('../models');
+const { productsModel, salesModel } = require('../models');
 
 const validationCreateProduct = (name) => {
     if (!name) return { status: 'BAD_REQUEST', message: '"name" is required' };
@@ -16,6 +16,13 @@ const validationItem = async (itemsId) => {
         itemsId.map((sale) => products.some((product) => product.id === sale.productId
          || product.id === sale.id)));
     if (verify.includes(false)) return { status: 'NOT_FOUND', message: 'Product not found' };
+};
+
+const validationSales = async (sales) => {
+    const sale = await salesModel.getAll();
+    const verify = (
+        sales.map((item) => sale.some((product) => product.id === item.saleId)));
+    if (verify.includes(false)) return { status: 'NOT_FOUND', message: 'Sale not found' };
 };
 
 const validationProducts = (sales) => {
@@ -47,4 +54,5 @@ module.exports = {
     validationCreateSale,
     validationItem,
     validationProducts,
+    validationSales,
 };
