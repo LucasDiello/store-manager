@@ -1,6 +1,6 @@
 # API de Gerenciamento de Estoque e Vendas
 
-Esta é uma API RESTful desenvolvida para gerenciar operações básicas em um sistema de estoque e vendas, utilizando o banco de dados MongoDB para a gestão de dados. Através desta API, é possível realizar operações de Criação, Leitura, Atualização e Exclusão (CRUD) tanto para produtos em estoque quanto para vendas.
+Esta é uma API RESTful desenvolvida para gerenciar operações básicas em um sistema de estoque e sales, utilizando o banco de dados MongoDB para a gestão de dados. Através desta API, é possível realizar operações de Criação, Leitura, Atualização e Exclusão (CRUD) tanto para produtos em estoque quanto para vendas.
 
 ## Funcionalidades
 
@@ -31,7 +31,7 @@ Esta é uma API RESTful desenvolvida para gerenciar operações básicas em um s
 
 ### Produtos
 
-#### GET /produtos/:id
+#### GET /products/:id
 Retorna detalhes de um produto específico.
 
 ##### Parâmetros
@@ -42,7 +42,7 @@ Retorna detalhes de um produto específico.
 - 404 Not Found: Produto não encontrado. Corpo da resposta contém `{ message: 'Produto não encontrado' }`.
 - Outros códigos de erro: Ver seção de Requisitos e Padrões.
 
-#### POST /produtos
+#### POST /products
 Adiciona um novo produto ao estoque.
 
 ##### Corpo da Requisição
@@ -59,7 +59,7 @@ Adiciona um novo produto ao estoque.
 - 201 Created: Produto criado com sucesso. Corpo da resposta contém detalhes do produto criado.
 - Outros códigos de erro: Ver seção de Requisitos e Padrões.
 
-#### PUT /produtos/:id
+#### PUT /products/:id
 Atualiza as informações de um produto existente.
 
 ##### Parâmetros
@@ -80,7 +80,7 @@ Atualiza as informações de um produto existente.
 - 404 Not Found: Produto não encontrado. Corpo da resposta contém `{ message: 'Produto não encontrado' }`.
 - Outros códigos de erro: Ver seção de Requisitos e Padrões.
 
-#### DELETE /produtos/:id
+#### DELETE /products/:id
 Exclui um produto do estoque.
 
 ##### Parâmetros
@@ -93,7 +93,7 @@ Exclui um produto do estoque.
 
 ### Vendas
 
-#### GET /vendas/:id
+#### GET /sales/:id
 Retorna detalhes de uma venda específica.
 
 ##### Parâmetros
@@ -104,7 +104,7 @@ Retorna detalhes de uma venda específica.
 - 404 Not Found: Venda não encontrada. Corpo da resposta contém `{ message: 'Venda não encontrada' }`.
 - Outros códigos de erro: Ver seção de Requisitos e Padrões.
 
-#### POST /vendas
+#### POST /sales
 Registra uma nova venda.
 
 ##### Corpo da Requisição
@@ -119,7 +119,7 @@ Registra uma nova venda.
 - 201 Created: Venda registrada com sucesso. Corpo da resposta contém detalhes da venda registrada.
 - Outros códigos de erro: Ver seção de Requisitos e Padrões.
 
-#### PUT /vendas/:id
+#### PUT /sales/:id
 Atualiza as informações de uma venda existente.
 
 ##### Parâmetros
@@ -137,7 +137,7 @@ Atualiza as informações de uma venda existente.
 - 404 Not Found: Venda não encontrada. Corpo da resposta contém `{ message: 'Venda não encontrada' }`.
 - Outros códigos de erro: Ver seção de Requisitos e Padrões.
 
-#### DELETE /vendas/:id
+#### DELETE /sales/:id
 Exclui uma venda registrada.
 
 ##### Parâmetros
@@ -150,4 +150,6 @@ Exclui uma venda registrada.
 
 ## Considerações Finais
 
-Esta documentação fornece uma visão geral dos endpoints disponíveis e das funcionalidades da API. Certifique-se de consultar as respostas e parâmetros específicos de cada endpoint para utilização correta da API. Para mais informações sobre como utilizar a API, consulte a documentação detalhada ou contate o desenvolvedor responsável.
+Esta documentação fornece uma visão geral dos endpoints disponíveis e das funcionalidades da API. Certifique-se de consultar as respostas e parâmetros específicos de cada endpoint para utilização correta da API. Para mais informações sobre como utilizar a API, consulte a documentação detalhada ou contate o desenvolvedor.
+
+##LUCAS DIELLO!
