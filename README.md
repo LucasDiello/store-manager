@@ -1,6 +1,6 @@
 # API de Gerenciamento de Estoque e Vendas
 
-Esta é uma API RESTful desenvolvida para gerenciar operações básicas em um sistema de estoque e sales, utilizando o banco de dados MongoDB para a gestão de dados. Através desta API, é possível realizar operações de Criação, Leitura, Atualização e Exclusão (CRUD) tanto para produtos em estoque quanto para vendas.
+Esta é uma API RESTful desenvolvida para gerenciar operações básicas em um sistema de estoque e sales, utilizando o banco de dados MySQL para a gestão de dados. Através desta API, é possível realizar operações de Criação, Leitura, Atualização e Exclusão (CRUD) tanto para produtos em estoque quanto para vendas.
 
 ## Funcionalidades
 
